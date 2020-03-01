@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const serverConfig = {
     entry: {
-        server: ['./src/server/AppServer.js'],
+        server: [ './src/server/AppServer.js' ],
     },
     mode: 'development',
     output: {
@@ -17,7 +17,7 @@ const serverConfig = {
         __dirname: false,   // if you don't put this is, __dirname
         __filename: false,  // and __filename return blank or /
     },
-    externals: [nodeExternals()], // Need this to avoid error when working with Express
+    externals: [ nodeExternals() ], // Need this to avoid error when working with Express
     module: {
         rules: [
             {
@@ -25,7 +25,7 @@ const serverConfig = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader"
+                    loader: 'babel-loader'
                 }
             }
         ]

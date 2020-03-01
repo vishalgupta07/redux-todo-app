@@ -1,0 +1,34 @@
+.add-todo {
+  display: flex;
+  justify-content: center;
+}
+
+.visible-todo-list{
+  text-align: center;
+  padding-left: 0;
+
+  .completed-todo {
+    text-decoration: line-through;
+  }
+}
+
+.filter-link-list {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  transform: translate(1%, 0);
+
+  .filter-link{
+    display: inline;
+    padding-right: 15px;
+    cursor: pointer;
+  }
+
+  .filter-link-selected {
+    display: inline;
+    padding-right: 15px;
+    cursor: pointer;
+    color: #8c19ff;
+    pointer-events: none;
+  }
+}

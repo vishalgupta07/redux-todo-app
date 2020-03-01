@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const nodeExternals = require('webpack-node-externals');
 const path = require('path');
 
 const config = {
@@ -9,7 +8,10 @@ const config = {
     entry: {
         index: [
             './src/app/index.js',
-            'webpack-hot-middleware/client?timeout=20000&reload=true'
+            /*
+            Enable this when working with Express server
+             */
+            // 'webpack-hot-middleware/client?timeout=20000&reload=true'
         ]
     },
     output: {
@@ -28,7 +30,7 @@ const config = {
                  */
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader', 'eslint-loader']
+                use: [ 'babel-loader', 'eslint-loader' ]
             },
             {
                 test: /\.html$/,
@@ -39,22 +41,46 @@ const config = {
                 ]
             },
             {
-                test: /\.css$/,
+                test: /\.module\.s(a|c)ss$/,
                 use: [
                     'style-loader',
                     {
                         loader: 'css-loader',
                         options: {
-                            modules: true
+                            modules: true,
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.s(a|c)ss$/,
+                exclude: /\.module.(s(a|c)ss)$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
                         }
                     }
                 ]
             },
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: ['file-loader']
+                use: [ 'file-loader' ]
             }
         ]
+    },
+    resolve: {
+        extensions: ['.js', '.jsx', '.scss']
     },
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
@@ -75,8 +101,7 @@ const config = {
         new HtmlWebPackPlugin({
             template: path.resolve('./src/index.html'),
             excludeChunks: [ 'server' ]
-        }),
-        new webpack.NoEmitOnErrorsPlugin()
+        })
     ]
 };
 
