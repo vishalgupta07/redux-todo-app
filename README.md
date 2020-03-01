@@ -1,4 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 ## Instructions
 
 $ <b>npm run startWebpackDevServer</b> <ensp /> (If you want to deploy using webpack-dev-server)
