@@ -1,4 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Instructions
+
+$ <b>npm run startWebpackDevServer</b> <ensp /> (If you want to deploy using webpack-dev-server)
+<br /> 
+$ <b> npm run deplayExpressServer </b>
+<br />
+<br />
+Express server provides more control and can be configured in a more tailored way for your project. Prefer using express server for production deployments.
+When deploying express server from this pull - please ensure you un-comment the entry point for HMR configuration in webpack.config.js file.
 
 ## Available Scripts
 
